@@ -14,4 +14,27 @@ function random() {
 		echo "T"
 	fi
 }
-random
+
+function percentage() {
+	temp=$1
+	percent=$(($temp*100/10))
+	echo "$percent%"
+}
+
+declare -A singlet
+
+singlet=( ["H"]=0 ["T"]=0)
+singletHeadCount=0
+singletTailCount=0
+for ((i=0; i<10; i++))
+do
+	z=$( random )
+	if [[ $z == H ]]
+	then
+		((singletHeadCount++))
+		singlet[H]=$singletHeadCount
+	else
+		((singletTailCount++))
+		singlet[T]=$singletTailCount
+	fi
+done
